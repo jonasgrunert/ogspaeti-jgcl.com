@@ -1,0 +1,16 @@
+{
+  "name": "ogspaeti-jgcl.com",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jonas Grunert <jonas@grunert-berlin.de>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node index.js",
+    "start": "sirv start public -d"
+  },
+  "devDependencies": {
+    "minify": "^4.1.3",
+    "sirv-cli": "^0.4.4"
+  },
+  "dependencies": {}
+}
