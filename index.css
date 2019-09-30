@@ -31,8 +31,8 @@ i {
   margin-top: 0.8em;
 }
 .links {
-  position: relative;
-  top: 1em;
+  position: fixed;
+  bottom: 1em;
   left: 50%;
   transform: translateX(-50%);
   /*border-top: 1px solid #555;*/
