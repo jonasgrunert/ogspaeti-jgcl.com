@@ -39,6 +39,7 @@ const template = info => `
     }
     <div class="information">
       ${info.dates
+        .filter(date => Date.now() < date.date)
         .map(
           date => `
         <div class="addeventatc details">
@@ -49,7 +50,11 @@ const template = info => `
           <span><i class="fas fa-street-view"></i>${date.person}</span>
           <span class="start">${date.date.toISOString()}</span>
           <span class="end">${new Date(
-            date.date.getDate()
+            date.date.getFullYear(),
+            date.date.getMonth(),
+            date.date.getDate(),
+            24,
+            00
           ).toISOString()}</span>
           <span class="timezone">Europe/Berlin</span>
           <span class="title">OG Späti - ${getMonth(
@@ -62,6 +67,23 @@ const template = info => `
         </div>`
         )
         .join("")}
+        ${
+          info.dates.filter(date => Date.now() > date.date).length > 0
+            ? `<h4>Vorheriger Termine</h4>${info.dates
+                .filter(date => Date.now() > date.date)
+                .map(
+                  date => `
+          <div class="details">
+            <span><i class="fab fa-stack-exchange"></i>${date.theme}</span>
+            <span><i class="far fa-calendar-alt"></i>${date.date.toLocaleDateString()}</span>
+            <span><i class="far fa-clock"></i>${date.date.toLocaleTimeString()}</span>
+            <span><i class="fas fa-location-arrow"></i>${date.place}</span>
+            <span><i class="fas fa-street-view"></i>${date.person}</span>
+          </div>`
+                )
+                .join("")}`
+            : ""
+        }
     </div>
     <div class="links">
         <a href="https://instagram.com/jgcl.berlin"><span><i class="fab fa-instagram"></i></span></a>
